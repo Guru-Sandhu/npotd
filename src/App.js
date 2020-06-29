@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { apod } from './requests'
 import './App.css';
 
 class App extends Component {
@@ -10,6 +10,16 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    apod()
+      .then(data => {
+        this.setState(state => {
+          return {
+            image: data
+          }
+        })
+      })
+  }
   render() {
     return (
       <div>

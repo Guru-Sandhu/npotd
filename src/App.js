@@ -21,24 +21,44 @@ class App extends Component {
       })
   }
 
-  leftBtn() {
+  leftBtn = () => {
     return <button>Previous Day</button>
   }
 
-  rightBtn() {
+  rightBtn = () => {
     return <button>Next Day</button>
   }
 
-  render() {
+  imageUI_1 = () => {
     return (
-      <div>
+      <>
         <p>{this.state.image.copyright}</p>
         <p>{this.state.image.title}</p>
         <p>{this.state.image.date}</p>
+      </>
+    )
+  }
+
+  imageUI_2 = () => {
+    return (
+      <>
         <this.leftBtn />
         <img src={this.state.image.url} alt='apod' ></img>
         <this.rightBtn />
-        <p>{this.state.image.explanation}</p>
+      </>
+    )
+  }
+
+  explanationUI = () => {
+    return <p>{this.state.image.explanation}</p>
+  }
+  
+  render() {
+    return (
+      <div>
+        <this.imageUI_1 />
+        <this.imageUI_2 />
+        <this.explanationUI />
       </div>
     );
   }

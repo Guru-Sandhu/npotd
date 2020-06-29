@@ -23,7 +23,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        Helllo World!!
+        <p>{this.state.image.copyright}</p>
+        <p>{this.state.image.title}</p>
+        <p>{this.state.image.date}</p>
+        <img src={this.state.image.url} alt='apod' ></img>
+        <p>{this.state.image.explanation}</p>
       </div>
     );
   }

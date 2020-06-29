@@ -6,7 +6,8 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      image: {}
+      image: {},
+      loading: true
     }
   }
 
@@ -15,7 +16,8 @@ class App extends Component {
       .then(data => {
         this.setState(state => {
           return {
-            image: data
+            image: data,
+            loading: false
           }
         })
       })
@@ -82,8 +84,20 @@ class App extends Component {
   }
 
   render() {
+    if (this.state.loading) {
+      return (
+          <div>
+            <p></p>
+            <div className="ui active dimmer">
+              <div className="ui loader"></div>
+            </div>
+          </div>
+      )
+    }
     return (
       <div>
+        {
+        }
         <this.imageUI_1 />
         <this.imageUI_2 />
         <this.explanationUI />

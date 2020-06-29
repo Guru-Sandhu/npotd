@@ -11,7 +11,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    apod()
+    apod('')
       .then(data => {
         this.setState(state => {
           return {
@@ -20,13 +20,24 @@ class App extends Component {
         })
       })
   }
+
+  leftBtn() {
+    return <button>Previous Day</button>
+  }
+
+  rightBtn() {
+    return <button>Next Day</button>
+  }
+
   render() {
     return (
       <div>
         <p>{this.state.image.copyright}</p>
         <p>{this.state.image.title}</p>
         <p>{this.state.image.date}</p>
+        <this.leftBtn />
         <img src={this.state.image.url} alt='apod' ></img>
+        <this.rightBtn />
         <p>{this.state.image.explanation}</p>
       </div>
     );

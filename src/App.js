@@ -21,12 +21,38 @@ class App extends Component {
       })
   }
 
+  previousImage = () => {
+    let currentDate = new Date(this.state.image.date)
+    currentDate.setDate(currentDate.getDate() - 1)
+    apod(currentDate.toISOString().slice(0,10))
+    .then(data => {
+      this.setState(state => {
+        return {
+          image: data
+        }
+      })
+    })
+  }
+
+  nextImage = () => {
+    let currentDate = new Date(this.state.image.date)
+    currentDate.setDate(currentDate.getDate() + 1)
+    apod(currentDate.toISOString().slice(0,10))
+    .then(data => {
+      this.setState(state => {
+        return {
+          image: data
+        }
+      })
+    })
+  }
+
   leftBtn = () => {
-    return <button>Previous Day</button>
+    return <button onClick={this.previousImage} >Previous Day</button>
   }
 
   rightBtn = () => {
-    return <button>Next Day</button>
+    return <button onClick={this.nextImage} >Next Day</button>
   }
 
   imageUI_1 = () => {
@@ -44,7 +70,9 @@ class App extends Component {
       <>
         <this.leftBtn />
         <img src={this.state.image.url} alt='apod' ></img>
-        <this.rightBtn />
+        {
+          this.state.image.date === new Date().toISOString().slice(0,10) ? '' : <this.rightBtn />
+        }
       </>
     )
   }
@@ -52,7 +80,7 @@ class App extends Component {
   explanationUI = () => {
     return <p>{this.state.image.explanation}</p>
   }
-  
+
   render() {
     return (
       <div>
